@@ -9,4 +9,20 @@ public class Flight {
         this.assignedPlane = null;
 
     }
+
+    public Plane getAssignedPlane(){
+       return this.assignedPlane;
+    }
+
+    public void assignPlane(Plane plane) {
+       this.assignedPlane = plane;
+    }
+
+    public int getFlightNo() {
+        return this.flightNo;
+    }
+
+    public Destination getDestination() {
+        return this.destination;
+    }
 }

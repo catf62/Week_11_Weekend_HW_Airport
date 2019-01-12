@@ -12,4 +12,24 @@ public class Plane {
         this.passengers = new ArrayList<>();
 
     }
+
+    public PlaneType getPlaneType() {
+        return this.planeType;
+    }
+
+    public Integer getFlightNo() {
+        return flightNo;
+    }
+
+    public void setFlightNo(Integer flightNo) {
+       this.flightNo = flightNo;
+    }
+
+    public int passengerCount() {
+       return this.passengers.size();
+    }
+
+    public void addPassengerToPlane(Passenger passenger) {
+        this.passengers.add(passenger);
+    }
 }
