@@ -19,7 +19,7 @@ public class FlightTest {
         flight2 = new Flight (2, Destination.EWR);
         flight3 = new Flight (3, Destination.KOI);
         plane1 = new Plane(PlaneType.BOEING747);
-        plane2 = new Plane(PlaneType.AIRBUSA330);
+        plane2 = new Plane(PlaneType.AIRBUS330);
         plane3 = new Plane(PlaneType.SAAB340);
     }
 

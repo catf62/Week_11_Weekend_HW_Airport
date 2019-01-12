@@ -32,4 +32,8 @@ public class Plane {
     public void addPassengerToPlane(Passenger passenger) {
         this.passengers.add(passenger);
     }
+
+    public String toString(){
+        return planeType.toString();
+    }
 }
