@@ -1,13 +1,16 @@
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Airport {
 
     private ArrayList<Plane> hangars;
     private String airportCode;
+    private HashMap<Flight, Integer> ticketsSold;
 
     public Airport(String airportCode){
         this.hangars = new ArrayList<>();
         this.airportCode = airportCode;
+        this.ticketsSold = new HashMap<>();
     }
 
     public int countPlanes(){
@@ -71,5 +74,32 @@ public class Airport {
 
     public void assignPriceToFlight(Flight flight, double price) {
         flight.addPriceToFlight(price);
+    }
+
+    public void addPassengerToFlight(Passenger thisPassenger, Flight thisFlight){
+        if(thisFlight.isPlaneAssigned() && thisFlight.getAssignedPlane().doesPlaneHaveCapacityLeft()){
+            thisFlight.getAssignedPlane().addPassengerToPlane(thisPassenger);
+        }
+    }
+
+    public int getLengthOfTicketsSold(){
+        return this.ticketsSold.size();
+    }
+
+    public HashMap getTicketsSold(){
+        return this.ticketsSold;
+    }
+
+    public Ticket createNewTicket(Flight thisFlight, double noSeats){
+        double totalPrice = thisFlight.getPrice() * noSeats;
+        return new Ticket(thisFlight, noSeats, totalPrice);
+    }
+
+    public Integer doubleToInteger(double thisDouble){
+        return thisDouble.
+    }
+
+    public void addTicketToTicketsSold(Ticket thisTicket){
+        this.ticketsSold.put(thisTicket.getFlight(), thisTicket.getNoSeatsBooked());
     }
 }

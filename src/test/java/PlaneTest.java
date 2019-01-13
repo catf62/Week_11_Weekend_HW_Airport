@@ -53,4 +53,21 @@ public class PlaneTest {
         plane1.addPassengerToPlane(passenger3);
         assertEquals(3, plane1.passengerCount());
     }
+
+    @Test
+    public void canTestIfPlaneHasCapacity(){
+        plane1.addPassengerToPlane(passenger1);
+        plane1.addPassengerToPlane(passenger2);
+        plane1.addPassengerToPlane(passenger3);
+        assertEquals(3, plane1.passengerCount());
+        assertEquals(true, plane1.doesPlaneHaveCapacityLeft());
+        plane1.addPassengerToPlane(passenger1);
+        plane1.addPassengerToPlane(passenger2);
+        plane1.addPassengerToPlane(passenger3);
+        plane1.addPassengerToPlane(passenger1);
+        plane1.addPassengerToPlane(passenger2);
+        plane1.addPassengerToPlane(passenger3);
+        plane1.addPassengerToPlane(passenger1);
+        assertEquals(false, plane1.doesPlaneHaveCapacityLeft());
+    }
 }

@@ -9,4 +9,16 @@ public class Ticket {
         this.noSeatsBooked = noSeatsBooked;
         this.totalCost = totalCost;
     }
+
+    public Flight getFlight(){
+        return this.flight;
+    }
+
+    public double getNoSeatsBooked(){
+        return this.noSeatsBooked;
+    }
+
+    public double getTotalCost(){
+        return this.totalCost;
+    }
 }

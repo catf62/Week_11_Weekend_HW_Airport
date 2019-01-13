@@ -36,4 +36,11 @@ public class Plane {
     public String toString(){
         return planeType.toString();
     }
+
+    public boolean doesPlaneHaveCapacityLeft(){
+        if(this.passengerCount() < this.getPlaneType().getCapacity()){
+            return true;
+        }
+        return false;
+    }
 }
