@@ -1,11 +1,13 @@
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 
 public class Airport {
 
     private ArrayList<Plane> hangars;
     private String airportCode;
-    private HashMap<Flight, Integer> ticketsSold;
+    private HashMap<Flight, Double> ticketsSold;
 
     public Airport(String airportCode){
         this.hangars = new ArrayList<>();
@@ -90,16 +92,40 @@ public class Airport {
         return this.ticketsSold;
     }
 
-    public Ticket createNewTicket(Flight thisFlight, double noSeats){
+    public Ticket createNewTicket(Flight thisFlight, Double noSeats){
         double totalPrice = thisFlight.getPrice() * noSeats;
         return new Ticket(thisFlight, noSeats, totalPrice);
     }
 
-    public Integer doubleToInteger(double thisDouble){
-        return thisDouble.
+    public Integer doubleToInteger(Double thisDouble){
+        return thisDouble.intValue();
     }
 
     public void addTicketToTicketsSold(Ticket thisTicket){
-        this.ticketsSold.put(thisTicket.getFlight(), thisTicket.getNoSeatsBooked());
+        Double booked = this.ticketsSold.get(thisTicket.getFlight());
+        if (booked == null) booked = 0d;
+        this.ticketsSold.put(thisTicket.getFlight(), booked + thisTicket.getNoSeatsBooked());
+    }
+
+    public void orderPlanesInHangarByCapacity(){
+        Collections.sort(this.hangars, new Comparator<Plane>() {
+            @Override
+            public int compare(Plane o1, Plane o2) {
+                return new Integer(o1.getPlaneType().getCapacity()).compareTo(o2.getPlaneType().getCapacity());
+            }
+        });
+    }
+
+    public Flight replaceIfPlaneTooLarge(Flight thisFlight){
+        this.orderPlanesInHangarByCapacity();
+        if(thisFlight.getAssignedPlane().passengerCount() < thisFlight.getAssignedPlane().getPlaneType().getCapacity()){
+            for(Plane plane : this.hangars){
+                if(plane.getPlaneType().getCapacity() > thisFlight.getAssignedPlane().passengerCount()){
+                    thisFlight.assignPlane(plane);
+                    return thisFlight;
+                }
+            }
+        }
+        return thisFlight;
     }
 }

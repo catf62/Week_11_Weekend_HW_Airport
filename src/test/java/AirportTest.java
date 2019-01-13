@@ -1,6 +1,8 @@
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.HashMap;
+
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
@@ -16,6 +18,7 @@ public class AirportTest {
     Plane plane1;
     Plane plane2;
     Plane plane3;
+    Plane plane4;
     Passenger passenger1;
     Passenger passenger2;
     Passenger passenger3;
@@ -29,6 +32,7 @@ public class AirportTest {
         plane1 = new Plane(PlaneType.BOEING747);
         plane2 = new Plane(PlaneType.AIRBUS330);
         plane3 = new Plane(PlaneType.SAAB340);
+        plane4 = new Plane(PlaneType.BOEING787);
         passenger1 = new Passenger();
         passenger2 = new Passenger();
         passenger3 = new Passenger();
@@ -167,10 +171,47 @@ public class AirportTest {
 
     @Test
     public void canAddTicketToTickets(){
-       Ticket newTicket = glasgowAirport.createNewTicket(glaflight1, 2);
-       glasgowAirport.addTicketToTicketsSold();
+       Ticket newTicket = glasgowAirport.createNewTicket(glaflight1, 2.00);
+       glasgowAirport.addTicketToTicketsSold(newTicket);
+       assertEquals(2.00, glasgowAirport.getTicketsSold().get(newTicket.getFlight()));
+       Ticket newTicket2 = glasgowAirport.createNewTicket(glaflight2, 2.00);
+       glasgowAirport.addTicketToTicketsSold(newTicket2);
+       assertEquals(2.00, glasgowAirport.getTicketsSold().get(newTicket2.getFlight()));
     }
 
+    @Test
+    public void canGetSoldTickets(){
+        Ticket newTicket = glasgowAirport.createNewTicket(glaflight1, 2.00);
+        glasgowAirport.addTicketToTicketsSold(newTicket);
+     HashMap glasgowTickets =  glasgowAirport.getTicketsSold();
+     assertEquals(2.00, glasgowTickets.get(newTicket.getFlight()));
+    }
+
+    @Test
+    public void canOrderPlanesInHangar(){
+        glasgowAirport.addPlaneToHangars(plane1);
+        glasgowAirport.addPlaneToHangars(plane3);
+        System.out.println(glasgowAirport.getHangars().size());
+        glasgowAirport.orderPlanesInHangarByCapacity();
+        System.out.println(glasgowAirport.getHangars().size());
+        assertEquals(2, glasgowAirport.getHangars().get(0).getPlaneType().getCapacity());
+    }
+
+    @Test
+    public void canReplaceOverLargePlane(){
+        glasgowAirport.addPlaneToHangars(plane1);
+        glasgowAirport.addPlaneToHangars(plane3);
+        glasgowAirport.addPlaneToHangars(plane4);
+        assertEquals(4, glasgowAirport.getHangars().size());
+        Flight glaflight4 = glasgowAirport.createFlight(14, Destination.KOI);
+        glasgowAirport.assignHangarPlaneToFlight(glaflight4, PlaneType.BOEING787);
+        assertEquals(335, glaflight4.getAssignedPlane().getPlaneType().getCapacity());
+        System.out.println(glaflight4.getAssignedPlane().passengerCount());
+        System.out.println(glasgowAirport.getHangars());
+        glasgowAirport.replaceIfPlaneTooLarge(glaflight4);
+        System.out.println(glasgowAirport.getHangars());
+        assertEquals(2, glaflight4.getAssignedPlane().getPlaneType().getCapacity());
+    }
 
 }
 

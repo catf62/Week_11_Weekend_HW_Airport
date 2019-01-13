@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-public class Plane {
+public class Plane{
 
     private PlaneType planeType;
     private Integer flightNo;

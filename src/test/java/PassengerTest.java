@@ -32,9 +32,9 @@ public class PassengerTest {
         passenger1 = new Passenger();
         passenger2 = new Passenger();
         passenger3 = new Passenger();
-        ticket1 = new Ticket(flight1, 2, 160.00);
-        ticket2 = new Ticket(flight2, 1, 350.00);
-        ticket3 = new Ticket(flight3, 3, 150.00);
+        ticket1 = new Ticket(flight1, 2.00, 160.00);
+        ticket2 = new Ticket(flight2, 1.00, 350.00);
+        ticket3 = new Ticket(flight3, 3.00, 150.00);
     }
 
     @Test

@@ -4,7 +4,7 @@ public class Ticket {
     private double noSeatsBooked;
     private double totalCost;
 
-    public Ticket(Flight flight, double noSeatsBooked, double totalCost){
+    public Ticket(Flight flight, Double noSeatsBooked, Double totalCost){
         this.flight = flight;
         this.noSeatsBooked = noSeatsBooked;
         this.totalCost = totalCost;
