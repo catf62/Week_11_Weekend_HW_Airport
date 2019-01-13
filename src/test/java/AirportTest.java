@@ -103,6 +103,12 @@ public class AirportTest {
         assertEquals(null, edinburghAirport.assignHangarPlaneToFlight(flight1, PlaneType.AIRBUS330));
     }
 
+    @Test
+    public void airportCanAssignPriceToFlight(){
+        edinburghAirport.assignPriceToFlight(flight1, 90.00);
+        assertEquals(90.00, flight1.getPrice(), 0.001);
+    }
+
 
 }
 

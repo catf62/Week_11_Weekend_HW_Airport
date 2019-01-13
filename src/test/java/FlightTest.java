@@ -50,4 +50,15 @@ public class FlightTest {
         flight2.assignPlane(plane1);
         assertEquals(true, flight2.isPlaneAssigned());
     }
+
+    @Test
+    public void flightPriceStartsAtZero(){
+        assertEquals(0, flight1.getPrice(), 0.001);
+    }
+
+    @Test
+    public void canAddPriceToFlight(){
+        flight1.addPriceToFlight(80.00);
+        assertEquals(80.00, flight1.getPrice(), 0.0001);
+    }
 }

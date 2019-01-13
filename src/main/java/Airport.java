@@ -69,4 +69,7 @@ public class Airport {
         return null;
     }
 
+    public void assignPriceToFlight(Flight flight, double price) {
+        flight.addPriceToFlight(price);
+    }
 }
