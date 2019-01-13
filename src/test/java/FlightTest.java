@@ -43,4 +43,11 @@ public class FlightTest {
     public void hasDestination(){
         assertEquals(Destination.LHR, flight1.getDestination());
     }
+
+    @Test
+    public void canCheckIfPlaneIsAssigned(){
+        assertEquals(false, flight2.isPlaneAssigned());
+        flight2.assignPlane(plane1);
+        assertEquals(true, flight2.isPlaneAssigned());
+    }
 }

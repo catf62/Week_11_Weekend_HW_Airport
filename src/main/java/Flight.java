@@ -11,11 +11,20 @@ public class Flight {
     }
 
     public Plane getAssignedPlane(){
-       return this.assignedPlane;
+
+        return this.assignedPlane;
     }
 
     public void assignPlane(Plane plane) {
-       this.assignedPlane = plane;
+
+        this.assignedPlane = plane;
+    }
+
+    public boolean isPlaneAssigned(){
+        if (this.assignedPlane != null){
+            return true;
+        }
+            return false;
     }
 
     public int getFlightNo() {
@@ -25,4 +34,5 @@ public class Flight {
     public Destination getDestination() {
         return this.destination;
     }
+
 }
